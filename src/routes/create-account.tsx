@@ -11,6 +11,7 @@ import {
 	Title,
 	Wrapper,
 } from "../components/auth-components";
+import GithubButton from "../components/github-btn";
 
 // const errors = {
 // 	"auth/email-already-in-use": "The email already exists.",
@@ -104,6 +105,7 @@ export default function CreateAccount() {
 				Already have an account?{""}
 				<Link to="/login">Log in &rsaquo;</Link>
 			</Switcher>
+			<GithubButton />
 		</Wrapper>
 	);
 }
