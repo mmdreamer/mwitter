@@ -4,16 +4,21 @@ import Home from "./routes/home";
 import Profile from "./routes/profile";
 import Login from "./routes/login";
 import CreateAccount from "./routes/create-account";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import "./styles/reset.css";
 import LoadingScreen from "./components/loading-screen";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
+import ProtectedRoute from "./components/protected-route";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Layout />,
+		element: (
+			<ProtectedRoute>
+				<Layout />
+			</ProtectedRoute>
+		),
 		children: [
 			{
 				path: "",
@@ -40,11 +45,17 @@ const GlobalStyles = createGlobalStyle`
   *{
 	box-sizing:border-box
 	}
-  body{
-	background-color: #000;
-	color:#fff;
+	body{
+	background-color: #fff;
+	color:#333;
 	font-family: 'Noto Sans KR', sans-serif;
-  }
+}
+`;
+
+const Wrapper = styled.div`
+	display: flex;
+	height: 100vh;
+	justify-content: center;
 `;
 
 function App() {
@@ -62,10 +73,10 @@ function App() {
 	}, []);
 
 	return (
-		<>
+		<Wrapper>
 			<GlobalStyles />
 			{isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
-		</>
+		</Wrapper>
 	);
 }
 
