@@ -1,23 +1,55 @@
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 50% 45%;
+	grid-gap: 5%;
+	place-items: center;
 	height: 100%;
-	width:420px;
-	padding 50px 0;
+	width: 1100px;
+	box-sizing: border-box;
 `;
+export const Section = styled.div`
+	width: 90%;
+	margin: 0 auto;
+
+	& > .bg-img {
+		display: block;
+		width: 90%;
+		max-width: 500px;
+		height: 100%;
+		margin: 0 auto;
+	}
+`;
+
 export const Title = styled.h1`
+	margin: 0 0 20px;
+	font-family: "Inria Serif", serif;
+	font-style: italic;
+	font-weight: 800;
 	font-size: 42px;
+	color: #4e775f;
 `;
+
+export const Subtitle = styled.h2`
+	font-family: "Inria Serif", serif;
+	font-weight: 500;
+	font-size: 30px;
+`;
+
+export const Strong = styled.strong`
+	display: block;
+	margin: 20px 0;
+	font-weight: 400;
+	text-align: center;
+`;
+
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	width: 100%;
-	margin-top: 50px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 `;
 export const Input = styled.input`
 	width: 100%;
@@ -47,9 +79,26 @@ export const Error = styled.span`
 `;
 
 export const Switcher = styled.span`
-	margin-top: 20px;
+	display: block;
+	margin-top: 30px;
+	font-family: "Inria Serif", serif;
+	font-weight: 500;
+	font-size: 18px;
 	a {
-		padding-left: 10px;
-		color: #ac8249;
+		display: block;
+		width: 100%;
+		margin: 15px 0;
+		padding: 10px 20px;
+		border: 1px solid #54a063;
+		border-radius: 50px;
+		font-weight: 500;
+		font-size: 16px;
+		text-decoration: none;
+		text-align: center;
+		color: #54a063;
+		&:hover {
+			opacity: 0.8;
+			transition: all 0.5s;
+		}
 	}
 `;

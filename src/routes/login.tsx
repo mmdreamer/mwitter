@@ -9,7 +9,10 @@ import {
 	Form,
 	Switcher,
 	Title,
+	Section,
 	Wrapper,
+	Subtitle,
+	Strong,
 } from "../components/auth-components";
 import GithubButton from "../components/github-btn";
 
@@ -51,33 +54,47 @@ export default function Login() {
 	};
 
 	return (
-		<Wrapper>
-			<Title>Log into Mwitter</Title>
-			<Form onSubmit={onSubmit}>
-				<Input
-					onChange={onChange}
-					name="email"
-					value={email}
-					placeholder="Email"
-					type="text"
-					required
+		<Wrapper className="grid-wrapper">
+			<Section>
+				<img
+					className="bg-img"
+					src="images/Home.jpg"
+					alt="Login page home image"
 				/>
-				<Input
-					onChange={onChange}
-					name="password"
-					value={password}
-					placeholder="Password"
-					type="password"
-					required
-				/>
-				<Input type="submit" value={isLoading ? "Loading...." : "Login"} />
-			</Form>
-			{error !== "" ? <Error> {error} </Error> : null}
-			<Switcher>
-				Don't have an account?{""}
-				<Link to="/create-account">Create one &rsaquo;</Link>
-			</Switcher>
-			<GithubButton />
+			</Section>
+			<Section>
+				<Title>
+					Welcome back!
+					<br /> We're glad to see you.
+				</Title>
+				<Subtitle>Log into Mwitter now.</Subtitle>
+				<GithubButton />
+				<Strong> or </Strong>
+				<Form onSubmit={onSubmit}>
+					<Input
+						onChange={onChange}
+						name="email"
+						value={email}
+						placeholder="Email"
+						type="text"
+						required
+					/>
+					<Input
+						onChange={onChange}
+						name="password"
+						value={password}
+						placeholder="Password"
+						type="password"
+						required
+					/>
+					<Input type="submit" value={isLoading ? "Loading...." : "Login"} />
+				</Form>
+				{error !== "" ? <Error> {error} </Error> : null}
+				<Switcher>
+					Don't have an account?{""}
+					<Link to="/create-account">Create your account &rsaquo;</Link>
+				</Switcher>
+			</Section>
 		</Wrapper>
 	);
 }
