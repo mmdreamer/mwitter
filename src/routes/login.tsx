@@ -58,7 +58,7 @@ export default function Login() {
 			<Section>
 				<img
 					className="bg-img"
-					src="images/Home.jpg"
+					src="images/Home2.jpg"
 					alt="Login page home image"
 				/>
 			</Section>

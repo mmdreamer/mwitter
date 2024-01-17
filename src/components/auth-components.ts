@@ -28,7 +28,7 @@ export const Title = styled.h1`
 	font-style: italic;
 	font-weight: 800;
 	font-size: 42px;
-	color: #4e775f;
+	color: #194f1d;
 `;
 
 export const Subtitle = styled.h2`
@@ -65,7 +65,7 @@ export const Input = styled.input`
 
 	&[type="submit"] {
 		cursor: pointer;
-		background-color: #54a063;
+		background-color: #194f1d;
 		color: #fff;
 
 		&:hover {
@@ -89,13 +89,13 @@ export const Switcher = styled.span`
 		width: 100%;
 		margin: 15px 0;
 		padding: 10px 20px;
-		border: 1px solid #54a063;
+		border: 1px solid #194f1d;
 		border-radius: 50px;
 		font-weight: 500;
 		font-size: 16px;
 		text-decoration: none;
 		text-align: center;
-		color: #54a063;
+		color: #194f1d;
 		&:hover {
 			opacity: 0.8;
 			transition: all 0.5s;
