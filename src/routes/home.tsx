@@ -1,4 +1,8 @@
+import { styled } from "styled-components";
 import { auth } from "../firebase";
+import PostTweetForm from "../components/post-tweet-form";
+
+const Wrapper = styled.div``;
 
 export default function Home() {
 	const logOut = () => {
@@ -6,8 +10,8 @@ export default function Home() {
 	};
 
 	return (
-		<h1>
-			<button onClick={logOut}>LogOut</button>
-		</h1>
+		<Wrapper>
+			<PostTweetForm />
+		</Wrapper>
 	);
 }
