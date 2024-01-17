@@ -14,10 +14,28 @@ const Wrapper = styled.div`
 const Menu = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 30px;
 `;
 const MenuItem = styled.div`
 	text-decoration: none;
+	&.home-logo {
+		width: 100%;
+		& img {
+			width: 100%;
+		}
+	}
+	&.btn-post {
+		width: 100%;
+		height: 32px;
+		background-color: #194f1d;
+		border-radius: 25px;
+		text-align: center;
+		line-height: 32px;
+		color: #fff;
+	}
+	&:hover {
+		opacity: 0.8;
+	}
 `;
 
 const Icon = styled.div`
@@ -54,6 +72,12 @@ export default function Layout() {
 	return (
 		<Wrapper>
 			<Menu>
+				<Link to="/">
+					<MenuItem className="home-logo">
+						<img src="images/logo.jpg" alt="Mwitter Logo" />
+					</MenuItem>
+				</Link>
+
 				<Link to="/">
 					<MenuItem>
 						<Icon>
@@ -211,6 +235,10 @@ export default function Layout() {
 						</Icon>
 						Logout
 					</MenuItem>
+				</Link>
+
+				<Link to="/">
+					<MenuItem className="btn-post">Post</MenuItem>
 				</Link>
 			</Menu>
 
