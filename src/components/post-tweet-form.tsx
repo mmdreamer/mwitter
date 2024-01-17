@@ -1,5 +1,7 @@
+import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { styled } from "styled-components";
+import { auth, db } from "../firebase";
 
 const Form = styled.form`
 	display: flex;
@@ -19,7 +21,6 @@ const TextArea = styled.textarea`
 	&::placeholder {
 		font-family: "Inria Serif", serif;
 		font-size: 16px;
-		letter-spacing: 0.1em;
 	}
 	&:focus {
 		outline: none;
@@ -71,11 +72,31 @@ export default function PostTweetForm() {
 		}
 	};
 
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const user = auth.currentUser;
+		if (!user || isLoading || tweet === "" || tweet.length > 180) return;
+
+		try {
+			setLoading(true);
+			await addDoc(collection(db, "tweets"), {
+				tweet,
+				createdAt: Date.now(),
+				username: user.displayName || "Anonymous",
+				userId: user.uid,
+			});
+		} catch (e) {
+			console.log(e);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
-		<Form>
+		<Form onSubmit={onSubmit}>
 			<TextArea
 				onChange={onChange}
-				rows={5}
+				rows={4}
 				maxLength={180}
 				placeholder="What is happening today?"
 				value={tweet}

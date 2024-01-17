@@ -4,10 +4,10 @@ import { auth } from "../firebase";
 
 const Wrapper = styled.div`
 	display: grid;
-	gap: 20px;
+	gap: 60px;
 	grid-template-columns: 1fr 4fr;
 	width: 100%;
-	max-width: 860px;
+	max-width: 950px;
 	height: 100%;
 	padding: 50px 0;
 `;
