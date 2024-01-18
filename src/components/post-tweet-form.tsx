@@ -40,6 +40,9 @@ const AttachFileButton = styled.label`
 	margin-left: 10px;
 	color: #ddd;
 	cursor: pointer;
+	&:first-child {
+		color: #bbb;
+	}
 `;
 const AttachFileInput = styled.input`
 	display: none;
