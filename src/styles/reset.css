@@ -96,6 +96,10 @@ video {
 	}
 }
 
+::-webkit-scrollbar {
+	display: none;
+}
+
 :root {
 	width: 90%;
 	margin: 0 auto;
