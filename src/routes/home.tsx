@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 export default function Home() {
 	return (
-		<Wrapper>
+		<Wrapper className="tweet">
 			<PostTweetForm />
 			<Timeline />
 		</Wrapper>

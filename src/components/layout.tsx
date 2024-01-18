@@ -4,10 +4,10 @@ import { auth } from "../firebase";
 
 const Wrapper = styled.div`
 	display: grid;
-	gap: 60px;
-	grid-template-columns: 1fr 4fr;
+	gap: 40px;
+	grid-template-columns: 1fr 2.7fr 1.3fr;
 	width: 100%;
-	max-width: 950px;
+	max-width: 1200px;
 	height: 100%;
 	padding: 50px 0;
 `;
@@ -37,6 +37,8 @@ const MenuItem = styled.div`
 	}
 	&:hover {
 		opacity: 0.8;
+		background: #efffef;
+		transition: all 0.5s;
 	}
 `;
 
@@ -62,6 +64,109 @@ const Icon = styled.div`
 	}
 `;
 
+const SideMenu = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+`;
+
+const Search = styled.input`
+	width: 100%;
+	padding: 15px;
+	border: none;
+	border-radius: 10px;
+	background: #efffef;
+	font-size: 14px;
+	color: #1e1e1e;
+	outline:none &::placeholder {
+		text-align: center;
+	}
+	&:focus {
+		outline: 1px solid #ddd;
+		transition: all 0.5s;
+	}
+`;
+
+const Subscribe = styled.div`
+	width: 100%;
+	padding: 15px;
+	border-radius: 15px;
+	background: #fefefe;
+	border: 1px solid #eee;
+`;
+const InnerTitle = styled.p`
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.4em;
+	color: #1e1e1e;
+`;
+const InnerText = styled.p`
+	margin: 15px 0;
+	font-size: 12px;
+`;
+const InnerButton = styled.button`
+	margin-right: auto;
+	padding: 4px 20px;
+	border: none;
+	border-radius: 25px;
+	background: #1e1e1e;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+`;
+const InnerImg = styled.img`
+	width: 100%;
+	border-radius: 10px;
+`;
+
+const Trending = styled.div`
+	width: 100%;
+	padding: 15px;
+	border-radius: 15px;
+	background: #fefefe;
+	border: 1px solid #eee;
+	cursor: pointer;
+`;
+
+const Follow = styled.div`
+	width: 100%;
+	padding: 15px;
+	border-radius: 15px;
+	background: #fefefe;
+	border: 1px solid #eee;
+`;
+const FollowTable = styled.table`
+	width: 100%;
+`;
+
+const FollowTr = styled.tr``;
+const FollowTd = styled.td`
+	padding: 5px;
+	font-size: 12px;
+	font-weight: 400;
+	vertical-align: middle;
+
+	& img {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border:1px solid #ddd;
+		background: #1e1e1e;
+		vertical-align: middle;
+	}
+	& em {
+		display: block;
+		font-size: 11px;
+		color: #aaa;
+	}
+	&.btn {text-align: right;}
+	&:hover {
+        opacity: 0.8;
+    }&
+	}
+`;
+
 export default function Layout() {
 	const navigate = useNavigate();
 	const onLogOut = async () => {
@@ -72,7 +177,7 @@ export default function Layout() {
 		}
 	};
 	return (
-		<Wrapper className="grid-wrapper">
+		<Wrapper>
 			<Menu>
 				<Link to="/">
 					<MenuItem className="home-logo">
@@ -243,6 +348,65 @@ export default function Layout() {
 			</Menu>
 
 			<Outlet />
+
+			<SideMenu>
+				<Search type="search" placeholder="Search a keyword" />
+				<Subscribe>
+					<InnerTitle>Subscribe to Premium</InnerTitle>
+					<InnerText>
+						Subscribe to unlock new features and if eligible, receive a share of
+						ads revenue
+					</InnerText>
+					<InnerButton>Subscribe</InnerButton>
+				</Subscribe>
+				<Trending>
+					<InnerTitle>Hot Trending in the world</InnerTitle>
+					<InnerText>
+						Discover the freshest eco-friendly trends creating ripples
+						worldwide. Stay ahead in the eco-conscious movement and join the
+						global conversation for a sustainable future!
+					</InnerText>
+					<InnerImg src="/images/trending.svg" />
+				</Trending>
+				<Follow>
+					<InnerTitle>Who to follow</InnerTitle>
+					<FollowTable>
+						<FollowTr>
+							<FollowTd>
+								<img src="/images/nomad.jpg" alt="Nomad Coders" />
+							</FollowTd>
+							<FollowTd>
+								Nomad Coders <em>@nomadcoder</em>
+							</FollowTd>
+							<FollowTd className="btn">
+								<InnerButton>Follow</InnerButton>
+							</FollowTd>
+						</FollowTr>
+						<FollowTr>
+							<FollowTd>
+								<img src="/images/sponge.jpg" alt="Developer Meme" />
+							</FollowTd>
+							<FollowTd>
+								No More Coding<em>@nomorecoding</em>
+							</FollowTd>
+							<FollowTd className="btn">
+								<InnerButton>Follow</InnerButton>
+							</FollowTd>
+						</FollowTr>
+						<FollowTr>
+							<FollowTd>
+								<img src="/images/error.jpg" alt="Error" />
+							</FollowTd>
+							<FollowTd>
+								No More Error <em>@nomoreerror</em>
+							</FollowTd>
+							<FollowTd className="btn">
+								<InnerButton>Follow</InnerButton>
+							</FollowTd>
+						</FollowTr>
+					</FollowTable>
+				</Follow>
+			</SideMenu>
 		</Wrapper>
 	);
 }

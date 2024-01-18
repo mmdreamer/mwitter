@@ -120,4 +120,10 @@ video {
 		grid-template-columns: 1fr !important;
 		grid-gap: 10px !important;
 	}
+	.tweet {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		width: 100%;
+	}
 }
