@@ -237,7 +237,9 @@ export default function Layout() {
 					Logout
 				</MenuItem>
 
-				<MenuItem className="btn-post">Post</MenuItem>
+				<Link to="/">
+					<MenuItem className="btn-post">Post</MenuItem>
+				</Link>
 			</Menu>
 
 			<Outlet />

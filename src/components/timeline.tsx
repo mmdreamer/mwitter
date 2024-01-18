@@ -1,7 +1,6 @@
 import {
 	Unsubscribe,
 	collection,
-	getDocs,
 	limit,
 	onSnapshot,
 	orderBy,
