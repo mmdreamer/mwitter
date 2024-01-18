@@ -83,34 +83,37 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font-family: "Inter", sans-serif;
-    vertical-align: baseline;
-    text-decoration: none;
-    color: #1e1e1e;
-    &::selection {
-        background: #f3ff44;
-    }
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: "Inter", sans-serif;
+	vertical-align: baseline;
+	text-decoration: none;
+	color: #1e1e1e;
+	&::selection {
+		background: #f3ff44;
+	}
 }
 
+:root {
+	width: 90%;
+	margin: 0 auto;
+}
 
 /* Tablet */
 
 @media only screen and (max-width: 767px) {
-    .grid-wrapper {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
-    }
+	.grid-wrapper {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	}
 }
-
 
 /* Mobile */
 
 @media only screen and (max-width: 480px) {
-    .grid-wrapper {
-        grid-template-columns: 1fr !important;
-        grid-gap: 10px !important;
-    }
+	.grid-wrapper {
+		grid-template-columns: 1fr !important;
+		grid-gap: 10px !important;
+	}
 }

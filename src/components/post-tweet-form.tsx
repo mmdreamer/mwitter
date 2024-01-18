@@ -11,7 +11,7 @@ const Form = styled.form`
 `;
 const TextArea = styled.textarea`
 	width: 100%;
-	padding: 20px 20px 30px;
+	padding: 20px;
 	border: 1px solid #194f1d;
 	border-radius: 15px;
 	background: #fff;
@@ -29,11 +29,10 @@ const TextArea = styled.textarea`
 	}
 `;
 const AttachFileButton = styled.label`
-	position: relative;
-	top: -38px;
-	left: 10px;
-	width: 22px;
-	height: 22px;
+	width: 26px;
+	height: 26px;
+	margin-right: auto;
+	margin-left: 10px;
 	background: #fff;
 	color: #ddd;
 	cursor: pointer;
@@ -44,7 +43,8 @@ const AttachFileInput = styled.input`
 const SubmitBtn = styled.input`
 	position: relative;
 	top: -30px;
-	width: 100%;
+	width: 150px;
+	margin-left: auto;
 	padding: 10px 5px;
 	border: none;
 	border-radius: 25px;

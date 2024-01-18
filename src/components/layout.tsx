@@ -72,7 +72,7 @@ export default function Layout() {
 		}
 	};
 	return (
-		<Wrapper>
+		<Wrapper className="grid-wrapper">
 			<Menu>
 				<Link to="/">
 					<MenuItem className="home-logo">

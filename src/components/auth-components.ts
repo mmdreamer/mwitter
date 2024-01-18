@@ -10,9 +10,6 @@ export const Wrapper = styled.div`
 	box-sizing: border-box;
 `;
 export const Section = styled.div`
-	width: 90%;
-	margin: 0 auto;
-
 	& > .bg-img {
 		display: block;
 		width: 90%;
