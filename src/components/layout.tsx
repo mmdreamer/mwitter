@@ -113,6 +113,9 @@ const InnerButton = styled.button`
 	text-align: center;
 	color: #fff;
 	cursor: pointer;
+	&:hover {
+		opacity: 0.8;
+	}
 `;
 const InnerImg = styled.img`
 	width: 100%;
@@ -126,6 +129,10 @@ const Trending = styled.div`
 	background: #fefefe;
 	border: 1px solid #eee;
 	cursor: pointer;
+
+	&:hover {
+		opacity: 0.8;
+	}
 `;
 
 const Follow = styled.div`

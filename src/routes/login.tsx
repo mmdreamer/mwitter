@@ -38,19 +38,21 @@ export default function Login() {
 		setError("");
 		if (isLoading || email === "" || password === "") return;
 		try {
-			//no empty inputs
 			setLoading(true);
+			// 로그인 시도
 			await signInWithEmailAndPassword(auth, email, password);
+
+			// 성공 시 navigate
+			console.log("/?로 이동");
 			navigate("/");
 		} catch (e) {
-			//setError
+			// 에러 처리
 			if (e instanceof FirebaseError) {
 				setError(e.message);
 			}
 		} finally {
 			setLoading(false);
 		}
-		//console.log(name, email, password);
 	};
 
 	return (

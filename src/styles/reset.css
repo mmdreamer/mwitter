@@ -105,25 +105,14 @@ video {
 	margin: 0 auto;
 }
 
-/* Tablet */
+/* Mobile and Tablet */
 
 @media only screen and (max-width: 767px) {
 	.grid-wrapper {
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	}
-}
-
-/* Mobile */
-
-@media only screen and (max-width: 480px) {
-	.grid-wrapper {
 		grid-template-columns: 1fr !important;
 		grid-gap: 10px !important;
-	}
-	.tweet {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		width: 100%;
+		& .tweet {
+			grid-template-columns: 1fr !important;
+		}
 	}
 }
