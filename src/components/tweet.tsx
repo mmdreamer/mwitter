@@ -3,6 +3,7 @@ import { ITweet } from "./timeline";
 import { auth, db, storage } from "../firebase";
 import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import {
+	avatar,
 	deleteObject,
 	getDownloadURL,
 	ref,
@@ -36,6 +37,18 @@ const UserImg = styled.img`
 const Username = styled.span`
 	font-size: 15px;
 	font-weight: 600;
+	.avatar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		padding: 8px;
+		background: #eee;
+		border-radius: 50%;
+		color: #fff;
+	}
 `;
 
 const UserButtons = styled.div`
@@ -87,14 +100,7 @@ const Photo = styled.img`
 	border-radius: 15px;
 `;
 
-export default function Tweet({
-	userImg,
-	username,
-	photo,
-	tweet,
-	userId,
-	id,
-}: ITweet) {
+export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 	const user = auth.currentUser;
 	const navigate = useNavigate();
 	const [isLoading, setLoading] = useState(false);
@@ -165,6 +171,7 @@ export default function Tweet({
 				try {
 					const tweetDoc = await getDoc(doc(db, "tweets", id));
 					const tweetData = tweetDoc.data();
+
 					if (tweetData && tweetData.photo) {
 						await getDownloadURL(ref(storage, tweetData.photo));
 					}
@@ -198,8 +205,24 @@ export default function Tweet({
 		<Wrapper>
 			<Column>
 				<Username>
-					{/* <UserImg src="/images/userimg.jpg" /> */}
-					<UserImg src={userImg} />
+					{avatar ? (
+						<UserImg src={avatar} />
+					) : (
+						<svg
+							className="avatar"
+							fill="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<path
+								clipRule="evenodd"
+								fillRule="evenodd"
+								d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+							/>
+						</svg>
+					)}
+
 					{username}
 				</Username>
 
@@ -261,7 +284,7 @@ export default function Tweet({
 							value={editedTweet}
 							onChange={(e) => setEditedTweet(e.target.value)}
 						/>
-						<input type="file" accept="images/*" onChange={handleImageChange} />
+						<input type="file" accept="image/*" onChange={handleImageChange} />
 					</>
 				) : (
 					<Payload>{tweet}</Payload>

@@ -14,7 +14,7 @@ import Tweet from "./tweet";
 export interface ITweet {
 	id: string;
 	photo?: string;
-	userImg?: string;
+	avatar?: string;
 	tweet: string;
 	userId: string;
 	username: string;
@@ -48,16 +48,16 @@ export default function Timeline() {
 			// });
 			unsubscribe = await onSnapshot(tweetsQuery, (snapshot) => {
 				const tweets = snapshot.docs.map((doc) => {
-					const { tweet, createdAt, userId, userImg, username, photo } =
+					const { tweet, createdAt, userId, username, photo, avatar } =
 						doc.data();
 					return {
 						id: doc.id,
 						tweet,
 						createdAt,
 						userId,
-						userImg,
 						username,
 						photo,
+						avatar,
 					};
 				});
 				setTweets(tweets);
