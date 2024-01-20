@@ -147,6 +147,8 @@ export default function Tweet({
 		} finally {
 			setLoading(false);
 		}
+
+		navigate("/#"); // 페이지 전환
 	};
 
 	//새로운 이미지 선택
@@ -265,14 +267,15 @@ export default function Tweet({
 					<Payload>{tweet}</Payload>
 				)}
 			</Column>
-			<Column className="photo">
-				{photo && <Photo src={`${photo}?timestamp=${Date.now()}`} />}
-				{!photo && newImage && (
-					<Photo
-						src={`${URL.createObjectURL(newImage)}?timestamp=${Date.now()}`}
-					/>
-				)}
-			</Column>
+			{photo ? (
+				<Column className="photo">
+					<Photo src={`${photo}?timestamp=${Date.now()}`} />
+				</Column>
+			) : newImage ? (
+				<Column className="photo">
+					<Photo src={URL.createObjectURL(newImage)} />
+				</Column>
+			) : null}
 		</Wrapper>
 	);
 }
