@@ -3,12 +3,14 @@ import { auth, db, storage } from "../firebase";
 import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import {
 	collection,
 	getDocs,
 	limit,
 	orderBy,
 	query,
+	updateDoc,
 	where,
 } from "firebase/firestore";
 import { ITweet } from "../components/timeline";
@@ -50,10 +52,27 @@ const AvatarInput = styled.input`
 	display: none;
 `;
 
-const Name = styled.span`
+const Name = styled.div`
 	font-weight: lighter;
 	font-size: 26px;
 `;
+const NameInput = styled.input``;
+const NameButton = styled.button`
+	display: inline-block;
+	padding: 5px;
+	border: none;
+	background: none;
+	color: #999;
+	cursor: pointer;
+	svg {
+		width: 22px;
+		height: 22px;
+	}
+	&:hover {
+		color: #88520b;
+	}
+`;
+
 const Tweets = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -62,9 +81,11 @@ const Tweets = styled.div`
 `;
 
 export default function Profile() {
-	const user = auth.currentUser;
+	const [user, setUser] = useState(auth.currentUser);
 	const [avatar, setAvatar] = useState(user?.photoURL);
 	const [tweets, setTweets] = useState<ITweet[]>([]);
+	const [isEditingName, setIsEditingName] = useState(false);
+	const [newName, setNewName] = useState(user?.displayName || "");
 
 	const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { files } = e.target;
@@ -78,6 +99,38 @@ export default function Profile() {
 			await updateProfile(user, {
 				photoURL: avatarUrl,
 			});
+		}
+	};
+
+	const onNameChange = async () => {
+		try {
+			if (user && newName.trim() !== "") {
+				// 유저 이름 업데이트
+				await updateProfile(user, {
+					displayName: newName,
+				});
+
+				// 현재 유저의 트윗 가져오기
+				const tweetQuery = query(
+					collection(db, "tweets"),
+					where("userId", "==", user.uid)
+				);
+				const snapshot = await getDocs(tweetQuery);
+				const tweetsToUpdate = snapshot.docs.map((doc) => doc.ref);
+
+				// 트윗에 변경된 이름 업데이트
+				await Promise.all(
+					tweetsToUpdate.map(async (tweetRef) => {
+						await updateDoc(tweetRef, {
+							username: newName,
+						});
+					})
+				);
+
+				setIsEditingName(false);
+			}
+		} catch (error) {
+			console.error("Error updating user profile and tweets:", error);
 		}
 	};
 
@@ -105,6 +158,14 @@ export default function Profile() {
 
 	useEffect(() => {
 		fetchTweet();
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			setUser(user);
+		});
+
+		return () => {
+			// 컴포넌트가 언마운트될 때 리스너 해제
+			unsubscribe();
+		};
 	}, []);
 
 	return (
@@ -133,7 +194,39 @@ export default function Profile() {
 				type="file"
 				accept="image/*"
 			/>
-			<Name>{user?.displayName ?? "Anonymous"}</Name>
+			<Name>
+				{isEditingName ? (
+					<>
+						<NameInput
+							id="username"
+							type="text"
+							value={newName}
+							onChange={(e) => setNewName(e.target.value)}
+						/>
+						<button onClick={onNameChange}>Confirm</button>
+					</>
+				) : (
+					<>
+						{user?.displayName ?? "Anonymous"}
+						<NameButton onClick={() => setIsEditingName(true)}>
+							<svg
+								fill="none"
+								strokeWidth={1.5}
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+								/>
+							</svg>
+						</NameButton>
+					</>
+				)}
+			</Name>
 			<Tweets>
 				{tweets.map((tweet) => (
 					<Tweet key={tweet.id} {...tweet} />
