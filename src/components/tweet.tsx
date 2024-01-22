@@ -3,7 +3,6 @@ import { ITweet } from "./timeline";
 import { auth, db, storage } from "../firebase";
 import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import {
-	avatar,
 	deleteObject,
 	getDownloadURL,
 	ref,
@@ -107,6 +106,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [newImage, setNewImage] = useState<File | null>(null);
 	const [editedTweet, setEditedTweet] = useState(tweet);
+	const [avatar, setAvatar] = useState<string | null>(null);
 
 	const handleEdit = () => {
 		setIsEditing(true);
@@ -164,7 +164,6 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 			setNewImage(file);
 		}
 	};
-
 	useEffect(() => {
 		const fetchPhotoUrl = async () => {
 			if (id) {
@@ -183,6 +182,48 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 
 		fetchPhotoUrl();
 	}, [id, storage]);
+
+	//Tweets 사용자 아바타
+	const fetchAvatarUrl = async (
+		userId: string,
+		githubAvatarUrl: string | null
+	) => {
+		try {
+			if (githubAvatarUrl) {
+				// GitHub로 로그인한 경우
+				return githubAvatarUrl;
+			} else {
+				// Firebase Storage에서 아바타 가져오기
+				try {
+					const userDocRef = doc(db, "tweets", userId);
+					const userDoc = await getDoc(userDocRef);
+
+					const userDataID = userDoc.id;
+					const avatarRef = ref(storage, `avatars/${userDataID}`);
+					return await getDownloadURL(avatarRef);
+				} catch (error) {
+					console.error("Error fetching avatar URL:", error);
+					return null;
+				}
+			}
+		} catch (error) {
+			console.error("Error fetching avatar URL:", error);
+			return null;
+		}
+	};
+
+	useEffect(() => {
+		const fetchTweetAvatar = async () => {
+			if (userId) {
+				const avatarUrl = await fetchAvatarUrl(userId);
+				setAvatar(avatarUrl);
+			} else {
+				console.log("userId is undefined or null");
+			}
+		};
+
+		fetchTweetAvatar();
+	}, [userId]);
 
 	//게시물 삭제
 	const onDelete = async () => {
