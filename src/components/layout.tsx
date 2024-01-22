@@ -378,39 +378,41 @@ export default function Layout() {
 				<Follow>
 					<InnerTitle>Who to follow</InnerTitle>
 					<FollowTable>
-						<FollowTr>
-							<FollowTd>
-								<img src="/images/nomad.jpg" alt="Nomad Coders" />
-							</FollowTd>
-							<FollowTd>
-								Nomad Coders <em>@nomadcoder</em>
-							</FollowTd>
-							<FollowTd className="btn">
-								<InnerButton>Follow</InnerButton>
-							</FollowTd>
-						</FollowTr>
-						<FollowTr>
-							<FollowTd>
-								<img src="/images/sponge.jpg" alt="Developer Meme" />
-							</FollowTd>
-							<FollowTd>
-								No More Coding<em>@nomorecoding</em>
-							</FollowTd>
-							<FollowTd className="btn">
-								<InnerButton>Follow</InnerButton>
-							</FollowTd>
-						</FollowTr>
-						<FollowTr>
-							<FollowTd>
-								<img src="/images/error.jpg" alt="Error" />
-							</FollowTd>
-							<FollowTd>
-								No More Error <em>@nomoreerror</em>
-							</FollowTd>
-							<FollowTd className="btn">
-								<InnerButton>Follow</InnerButton>
-							</FollowTd>
-						</FollowTr>
+						<tbody>
+							<FollowTr>
+								<FollowTd>
+									<img src="/images/nomad.jpg" alt="Nomad Coders" />
+								</FollowTd>
+								<FollowTd>
+									Nomad Coders <em>@nomadcoder</em>
+								</FollowTd>
+								<FollowTd className="btn">
+									<InnerButton>Follow</InnerButton>
+								</FollowTd>
+							</FollowTr>
+							<FollowTr>
+								<FollowTd>
+									<img src="/images/sponge.jpg" alt="Developer Meme" />
+								</FollowTd>
+								<FollowTd>
+									No More Coding<em>@nomorecoding</em>
+								</FollowTd>
+								<FollowTd className="btn">
+									<InnerButton>Follow</InnerButton>
+								</FollowTd>
+							</FollowTr>
+							<FollowTr>
+								<FollowTd>
+									<img src="/images/error.jpg" alt="Error" />
+								</FollowTd>
+								<FollowTd>
+									No More Error <em>@nomoreerror</em>
+								</FollowTd>
+								<FollowTd className="btn">
+									<InnerButton>Follow</InnerButton>
+								</FollowTd>
+							</FollowTr>
+						</tbody>
 					</FollowTable>
 				</Follow>
 			</SideMenu>

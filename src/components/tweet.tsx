@@ -184,28 +184,14 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 	}, [id, storage]);
 
 	//Tweets 사용자 아바타
-	const fetchAvatarUrl = async (
-		userId: string,
-		githubAvatarUrl: string | null
-	) => {
+	const fetchAvatarUrl = async (userId: string) => {
 		try {
-			if (githubAvatarUrl) {
-				// GitHub로 로그인한 경우
-				return githubAvatarUrl;
-			} else {
-				// Firebase Storage에서 아바타 가져오기
-				try {
-					const userDocRef = doc(db, "tweets", userId);
-					const userDoc = await getDoc(userDocRef);
+			const userDocRef = doc(db, "tweets", userId);
+			const userDoc = await getDoc(userDocRef);
+			const userDataID = userDoc.id;
+			const avatarRef = ref(storage, `avatars/${userDataID}`);
 
-					const userDataID = userDoc.id;
-					const avatarRef = ref(storage, `avatars/${userDataID}`);
-					return await getDownloadURL(avatarRef);
-				} catch (error) {
-					console.error("Error fetching avatar URL:", error);
-					return null;
-				}
-			}
+			return await getDownloadURL(avatarRef);
 		} catch (error) {
 			console.error("Error fetching avatar URL:", error);
 			return null;
