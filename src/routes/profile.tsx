@@ -56,20 +56,51 @@ const Name = styled.div`
 	font-weight: lighter;
 	font-size: 26px;
 `;
-const NameInput = styled.input``;
 const NameButton = styled.button`
 	display: inline-block;
-	padding: 5px;
+	padding: 10px;
 	border: none;
 	background: none;
 	color: #999;
 	cursor: pointer;
 	svg {
-		width: 22px;
-		height: 22px;
+		width: 20px;
+		height: 20px;
 	}
 	&:hover {
 		color: #88520b;
+	}
+`;
+const NameInput = styled.input`
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: none;
+	font-size: 18px;
+	text-align: center;
+	letter-spacing: 2px;
+	&:focus {
+		border: none;
+		background: #efffef;
+		outline: none;
+		transition: all 0.5s;
+	}
+`;
+
+const ConfirmButton = styled.button`
+	display: block;
+	width: 100px;
+	height: 30px;
+	margin: 0 auto 20px;
+	padding: 0 20px;
+	border: 1px solid #1e1e1e;
+	border-radius: 25px;
+	background: #fff;
+	color: #1e1e1e;
+	cursor: pointer;
+	&:hover {
+		opacity: 0.8;
 	}
 `;
 
@@ -203,7 +234,7 @@ export default function Profile() {
 							value={newName}
 							onChange={(e) => setNewName(e.target.value)}
 						/>
-						<button onClick={onNameChange}>Confirm</button>
+						<ConfirmButton onClick={onNameChange}>Confirm </ConfirmButton>
 					</>
 				) : (
 					<>
