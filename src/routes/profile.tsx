@@ -163,6 +163,8 @@ export default function Profile() {
 		} catch (error) {
 			console.error("Error updating user profile and tweets:", error);
 		}
+
+		location.reload();
 	};
 
 	const fetchTweet = async () => {

@@ -43,7 +43,7 @@ export default function Login() {
 			await signInWithEmailAndPassword(auth, email, password);
 
 			// 성공 시 navigate
-			console.log("/?로 이동");
+			// console.log("/?로 이동");
 			navigate("/");
 		} catch (e) {
 			// 에러 처리
