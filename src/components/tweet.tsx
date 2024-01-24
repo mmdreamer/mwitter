@@ -211,7 +211,8 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 			setLoading(false);
 		}
 
-		location.reload();
+		// location.reload();
+		navigate("");
 	};
 
 	//새로운 이미지 선택
