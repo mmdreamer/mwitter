@@ -164,7 +164,6 @@ const Photo = styled.img`
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 	const user = auth.currentUser;
 	const navigate = useNavigate();
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [isLoading, setLoading] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
 	const [newImage, setNewImage] = useState<File | null>(null);
@@ -185,7 +184,9 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 		try {
 			setLoading(true);
 			const tweetDocRef = doc(db, "tweets", id);
-
+			if (isLoading) {
+				// Do something when isLoading is true
+			}
 			//이미지 업로드
 			if (newImage) {
 				const storageRef = ref(storage, `tweets/${user?.uid}/${id}`);
