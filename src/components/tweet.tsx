@@ -164,6 +164,7 @@ const Photo = styled.img`
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 	const user = auth.currentUser;
 	const navigate = useNavigate();
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [isLoading, setLoading] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
 	const [newImage, setNewImage] = useState<File | null>(null);
