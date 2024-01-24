@@ -34,11 +34,14 @@ const MenuItem = styled.div`
 		line-height: 32px;
 		color: #194f1d;
 		cursor: pointer;
+
+		&:hover {
+			background-color: #efffef;
+		}
 	}
 	&:hover {
-		opacity: 0.8;
-		background: #efffef;
-		transition: all 0.5s;
+		opacity: 0.6;
+		transition: all 0.3s;
 	}
 `;
 
@@ -78,7 +81,8 @@ const Search = styled.input`
 	background: #efffef;
 	font-size: 14px;
 	color: #1e1e1e;
-	outline:none &::placeholder {
+	outline: none;
+	&::placeholder {
 		text-align: center;
 	}
 	&:focus {

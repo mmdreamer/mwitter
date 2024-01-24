@@ -1,12 +1,7 @@
-import {
-	GithubAuthProvider,
-	getRedirectResult,
-	signInWithRedirect,
-} from "firebase/auth";
+import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { styled } from "styled-components";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const Button = styled.span`
 	display: flex;
@@ -33,34 +28,15 @@ const Logo = styled.img`
 
 export default function GithubButton() {
 	const navigate = useNavigate();
-
 	const onClick = async () => {
 		try {
 			const provider = new GithubAuthProvider();
-			await signInWithRedirect(auth, provider);
+			await signInWithPopup(auth, provider);
+			navigate("/");
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
-
-	useEffect(() => {
-		const handleRedirectResult = async () => {
-			try {
-				const result = await getRedirectResult(auth);
-				// result가 null이 아니고, result.user가 존재하는 경우에만 리디렉션 수행
-				if (result !== null && result.user) {
-					navigate("/");
-				} else {
-					console.log("GitHub 로그인 결과에 사용자 정보가 없습니다.", result);
-				}
-			} catch (error) {
-				console.error("GitHub 로그인 결과 가져오기 실패:", error);
-			}
-		};
-
-		handleRedirectResult();
-	}, [navigate]);
-
 	return (
 		<Button onClick={onClick}>
 			<Logo src="/github-logo.svg" />
