@@ -71,10 +71,10 @@ export default function CreateAccount() {
 	};
 
 	return (
-		<Wrapper>
+		<Wrapper className="blurry">
 			<Section>
 				<img
-					className="bg-img"
+					className="bg-img effect-img"
 					src="images/Home2.jpg"
 					alt="Login page home image"
 				/>

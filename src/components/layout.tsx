@@ -193,11 +193,15 @@ export default function Layout() {
 		}
 	};
 	return (
-		<Wrapper>
+		<Wrapper className="blurry">
 			<Menu>
 				<Link to="/">
 					<MenuItem className="home-logo">
-						<img src="images/logo.jpg" alt="Mwitter Logo" />
+						<img
+							className="effect-img"
+							src="images/logo.jpg"
+							alt="Mwitter Logo"
+						/>
 					</MenuItem>
 				</Link>
 

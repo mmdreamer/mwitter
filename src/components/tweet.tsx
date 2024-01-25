@@ -30,11 +30,13 @@ const UserTweet = styled.div`
 	gap: 10px;
 	padding: 20px 0;
 	& button.edit {
+		width:65px;
 		border: 1px solid #88520B;
 		border-radius: 20px;
 		margin: 0 3px;
 		padding: 3px 10px;
 		background: none;
+		font-size:12px;
 		color: #88520B;
 		cursor: pointer;
 		svg {
@@ -60,6 +62,8 @@ const UserTweet = styled.div`
 		border: 1px solid #eee;
 		border-radius: 8px;
 		background-color: #fff;
+		font-family:'inter';
+		letter-spacing:1.2px;
 		outline: none;
 		&::placeholder {
 			text-align: center;
@@ -358,7 +362,10 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 								</>
 							) : (
 								<>
-									<button className="edit" onClick={handleSaveEdit}>
+									<button
+										className="edit effect effect-hover"
+										onClick={handleSaveEdit}
+									>
 										{/* 저장 버튼 */}
 										Save
 									</button>
@@ -386,10 +393,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 								onChange={handleImageChange}
 							/>
 
-							<label
-								htmlFor="editInputFile"
-								className="editLabel effect effect-hover"
-							>
+							<label htmlFor="editInputFile" className="editLabel">
 								Select File
 							</label>
 						</>

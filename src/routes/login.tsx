@@ -56,10 +56,10 @@ export default function Login() {
 	};
 
 	return (
-		<Wrapper className="grid-wrapper">
+		<Wrapper className="grid-wrapper blurry">
 			<Section>
 				<img
-					className="bg-img"
+					className="bg-img effect-img"
 					src="images/Home2.jpg"
 					alt="Login page home image"
 				/>
