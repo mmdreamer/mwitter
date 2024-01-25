@@ -94,7 +94,9 @@ export default function Login() {
 				{error !== "" ? <Error> {error} </Error> : null}
 				<Switcher>
 					Don't have an account?{""}
-					<Link to="/create-account">Create your account &rsaquo;</Link>
+					<Link className="effect effect-hover" to="/create-account">
+						Create your account &rsaquo;
+					</Link>
 				</Switcher>
 			</Section>
 		</Wrapper>

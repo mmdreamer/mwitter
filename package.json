@@ -11,6 +11,15 @@
         "predeploy": "npm run build",
         "deploy": "firebase deploy"
     },
+    "hosting": {
+        "headers": [{
+            "source": "/index.html",
+            "headers": [{
+                "key": "Cache-Control",
+                "value": "no-cache"
+            }]
+        }]
+    },
     "dependencies": {
         "firebase": "^10.1.0",
         "react": "^18.2.0",

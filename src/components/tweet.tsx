@@ -30,7 +30,10 @@ const UserTweet = styled.div`
 	gap: 10px;
 	padding: 20px 0;
 	& button.edit {
-		border: none;
+		border: 1px solid #88520B;
+		border-radius: 20px;
+		margin: 0 3px;
+		padding: 3px 10px;
 		background: none;
 		color: #88520B;
 		cursor: pointer;
@@ -40,11 +43,14 @@ const UserTweet = styled.div`
 		}
 		&:hover {
 			color: #1e1e1e;
+			border-color:#1e1e1e;
 			opacity: 0.8;
 		}
 	}
 	& button.edit:last-child {
-		color: #555;
+		
+		border-color: #aaa;
+		color: #aaa;
 	}
 	& .editTextarea {
 		display: block;
@@ -380,7 +386,10 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 								onChange={handleImageChange}
 							/>
 
-							<label htmlFor="editInputFile" className="editLabel">
+							<label
+								htmlFor="editInputFile"
+								className="editLabel effect effect-hover"
+							>
 								Select File
 							</label>
 						</>

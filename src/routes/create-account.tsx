@@ -117,7 +117,9 @@ export default function CreateAccount() {
 				{error !== "" ? <Error> {error} </Error> : null}
 				<Switcher>
 					Already have an account?{""}
-					<Link to="/login">Log in &rsaquo;</Link>
+					<Link className="effect effect-hover" to="/login">
+						Log in &rsaquo;
+					</Link>
 				</Switcher>
 			</Section>
 		</Wrapper>

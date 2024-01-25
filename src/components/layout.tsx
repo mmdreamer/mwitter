@@ -31,7 +31,7 @@ const MenuItem = styled.div`
 		border: 1px solid #194f1d;
 		border-radius: 25px;
 		text-align: center;
-		line-height: 32px;
+		line-height: 0px;
 		color: #194f1d;
 		cursor: pointer;
 
@@ -109,11 +109,13 @@ const InnerText = styled.p`
 	font-size: 12px;
 `;
 const InnerButton = styled.button`
+	max-width: 110px;
 	margin-right: auto;
 	padding: 4px 20px;
 	border: none;
 	border-radius: 25px;
 	background: #1e1e1e;
+	font-size: 14px;
 	text-align: center;
 	color: #fff;
 	cursor: pointer;
@@ -145,6 +147,9 @@ const Follow = styled.div`
 	border-radius: 15px;
 	background: #fefefe;
 	border: 1px solid #eee;
+	& button {
+		width: 80px;
+	}
 `;
 const FollowTable = styled.table`
 	width: 100%;
@@ -354,7 +359,7 @@ export default function Layout() {
 				</MenuItem>
 
 				<Link to="/">
-					<MenuItem className="btn-post">Post</MenuItem>
+					<MenuItem className="btn-post effect effect-hover">Post</MenuItem>
 				</Link>
 			</Menu>
 
@@ -368,7 +373,7 @@ export default function Layout() {
 						Subscribe to unlock new features and if eligible, receive a share of
 						ads revenue
 					</InnerText>
-					<InnerButton>Subscribe</InnerButton>
+					<InnerButton className="effect effect-hover">Subscribe</InnerButton>
 				</Subscribe>
 				<Trending>
 					<InnerTitle>Hot Trending in the world</InnerTitle>
@@ -391,7 +396,9 @@ export default function Layout() {
 									Nomad Coders <em>@nomadcoder</em>
 								</FollowTd>
 								<FollowTd className="btn">
-									<InnerButton>Follow</InnerButton>
+									<InnerButton className="effect effect-hover">
+										Follow
+									</InnerButton>
 								</FollowTd>
 							</FollowTr>
 							<FollowTr>
@@ -402,7 +409,9 @@ export default function Layout() {
 									No More Coding<em>@nomorecoding</em>
 								</FollowTd>
 								<FollowTd className="btn">
-									<InnerButton>Follow</InnerButton>
+									<InnerButton className="effect effect-hover">
+										Follow
+									</InnerButton>
 								</FollowTd>
 							</FollowTr>
 							<FollowTr>
@@ -413,7 +422,9 @@ export default function Layout() {
 									No More Error <em>@nomoreerror</em>
 								</FollowTd>
 								<FollowTd className="btn">
-									<InnerButton>Follow</InnerButton>
+									<InnerButton className="effect effect-hover">
+										Follow
+									</InnerButton>
 								</FollowTd>
 							</FollowTr>
 						</tbody>
