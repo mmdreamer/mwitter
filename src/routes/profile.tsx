@@ -202,7 +202,7 @@ export default function Profile() {
 	}, []);
 
 	return (
-		<Wrapper>
+		<Wrapper className="blurry">
 			<AvatarUpload htmlFor="avatar">
 				{avatar ? (
 					<AvatarImg src={avatar} />

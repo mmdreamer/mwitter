@@ -303,7 +303,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 			<Column>
 				<Username>
 					{avatar ? (
-						<UserImg src={avatar} />
+						<UserImg src={avatar} className="blurry" />
 					) : (
 						<svg
 							className="avatar"
@@ -404,11 +404,11 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 			</Column>
 			{photo ? (
 				<Column className="photo">
-					<Photo src={`${photo}?timestamp=${Date.now()}`} />
+					<Photo className="blurry" src={`${photo}?timestamp=${Date.now()}`} />
 				</Column>
 			) : newImage ? (
 				<Column className="photo">
-					<Photo src={URL.createObjectURL(newImage)} />
+					<Photo className="blurry" src={URL.createObjectURL(newImage)} />
 				</Column>
 			) : null}
 		</Wrapper>
